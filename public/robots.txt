@@ -1,0 +1,8 @@
+# This file tells search engine crawlers which pages or files the crawler can or can't request from your site.
+
+# Allow all web crawlers complete access.
+User-agent: *
+Disallow:
+
+# Point all crawlers to the final sitemap file for a full list of pages.
+Sitemap: https://carrnexa.com/sitemap.xml
