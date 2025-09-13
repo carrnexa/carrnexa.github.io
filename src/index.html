@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>CarrNexa | Modular tools for curious minds</title>
+    <meta
+      name="description"
+      content="CarrNexa builds high-performance software driven by pragmatic engineering and a deep respect for craftsmanship."
+    />
+
+    <!-- Favicon and Icon Links -->
+    <link rel="icon" href="/favicon.ico" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/favicon-16x16.png" type="image/png" sizes="16x16" />
+    <link rel="icon" href="/favicon-32x32.png" type="image/png" sizes="32x32" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" />
+
+    <!-- Web App Manifest -->
+    <link rel="manifest" href="/site.webmanifest" />
+
+    <!-- Theme Color -->
+    <meta name="theme-color" content="#1c2833" />
+
+    <!-- Google Fonts Import -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@400;600;700&family=Inter:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="./styles/main.css" />
+
+    <script>
+      // This script runs before the page is rendered to prevent a flash of the wrong theme.
+      (function () {
+        const theme = localStorage.getItem("theme");
+        const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+        if (theme === "dark" || (!theme && prefersDark)) {
+          document.documentElement.classList.add("dark");
+          document.getElementById("theme-color-meta").setAttribute("content", "#1C2833");
+        } else {
+          document.documentElement.classList.remove("dark");
+          document.getElementById("theme-color-meta").setAttribute("content", "#F4F6F6");
+        }
+      })();
+    </script>
+  </head>
+
+  <body>
+    <header class="container">
+      <nav>
+        <a href="/" class="logo text-primary">CarrNexa</a>
+        <label for="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
+          <input type="checkbox" id="theme-toggle" class="theme-toggle-input" />
+          <span class="slider"></span>
+        </label>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero container">
+        <h1 class="hero-title text-primary">Modular tools for curious minds.</h1>
+        <p class="hero-subtitle">Built with clarity, shared with purpose.</p>
+        <p>
+          We build high-performance software driven by pragmatic engineering and a deep respect for craftsmanship. Some
+          projects are polished utilities; others are experiments where the goal is learning and pushing limits.
+        </p>
+        <a href="https://github.com/carrnexa" class="btn btn-primary" target="_blank" rel="noopener noreferrer">
+          Explore on GitHub
+        </a>
+      </section>
+
+      <section class="values container">
+        <h2 class="section-title text-primary">What we value</h2>
+        <div class="values-grid">
+          <div class="value-item">
+            <h3 class="text-primary">Craftsmanship</h3>
+            <p>Code that's readable, maintainable, and performs where it counts.</p>
+          </div>
+          <div class="value-item">
+            <h3 class="text-primary">Practicality</h3>
+            <p>Ship small, measure real outcomes, and iterate.</p>
+          </div>
+          <div class="value-item">
+            <h3 class="text-primary">Openness</h3>
+            <p>Share knowledge, tools, and ideas that benefit the community.</p>
+          </div>
+          <div class="value-item">
+            <h3 class="text-primary">Curiosity</h3>
+            <p>Explore, experiment, and publish what we learn.</p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="container">
+      <p>&copy; <span id="current-year">2025</span> CarrNexa. All rights reserved.</p>
+      <div>
+        <a href="https://github.com/carrnexa" target="_blank" rel="noopener noreferrer">GitHub</a>
+        &bull;
+        <a href="mailto:hello@carrnexa.com">Email</a>
+      </div>
+    </footer>
+
+    <script>
+      // Set the current year in the footer
+      document.getElementById("current-year").textContent = new Date().getFullYear();
+
+      // Theme toggle logic
+      const themeToggle = document.getElementById("theme-toggle");
+      const themeColorMeta = document.getElementById("theme-color-meta");
+
+      // Sync checkbox state with current theme on page load
+      if (document.documentElement.classList.contains("dark")) {
+        themeToggle.checked = true;
+      }
+
+      // Handle theme toggle
+      themeToggle.addEventListener("change", () => {
+        const isDark = themeToggle.checked;
+        document.documentElement.classList.toggle("dark", isDark);
+        localStorage.setItem("theme", isDark ? "dark" : "light");
+        themeColorMeta.setAttribute("content", isDark ? "#1C2833" : "#F4F6F6");
+      });
+    </script>
+  </body>
+</html>
