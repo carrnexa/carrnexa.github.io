@@ -1,20 +1,18 @@
 /**
  * Theme Management
  * Handles dark/light theme switching and persistence
+ * Uses data-theme attribute with CSS prefers-color-scheme
  */
 
-// Initialize theme before page render to prevent flash
+// Initialize theme meta tag on page load
 (function initializeTheme() {
-  const theme = localStorage.getItem("theme");
+  const currentTheme = document.documentElement.getAttribute("data-theme");
   const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+  const effectiveTheme = currentTheme || (prefersDark ? "dark" : "light");
   const themeColorMeta = document.getElementById("theme-color-meta");
 
-  const isDark = theme === "dark" || (!theme && prefersDark);
-
-  document.documentElement.classList.toggle("dark", isDark);
-
   if (themeColorMeta) {
-    themeColorMeta.setAttribute("content", isDark ? "#1C2833" : "#F4F6F6");
+    themeColorMeta.setAttribute("content", effectiveTheme === "dark" ? "#1C2833" : "#F4F6F6");
   }
 })();
 
@@ -50,19 +48,22 @@ function initializeThemeToggle() {
     return;
   }
 
-  // Sync checkbox with current theme
-  const isDarkMode = document.documentElement.classList.contains("dark");
+  // Determine current effective theme
+  const currentTheme = document.documentElement.getAttribute("data-theme");
+  const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+  const isDarkMode = currentTheme === "dark" || (!currentTheme && prefersDark);
+
   themeToggle.checked = isDarkMode;
 
   // Handle theme changes
   themeToggle.addEventListener("change", () => {
-    const isDark = themeToggle.checked;
+    const newTheme = themeToggle.checked ? "dark" : "light";
 
-    document.documentElement.classList.toggle("dark", isDark);
-    localStorage.setItem("theme", isDark ? "dark" : "light");
+    document.documentElement.setAttribute("data-theme", newTheme);
+    localStorage.setItem("theme", newTheme);
 
     if (themeColorMeta) {
-      themeColorMeta.setAttribute("content", isDark ? "#1C2833" : "#F4F6F6");
+      themeColorMeta.setAttribute("content", newTheme === "dark" ? "#1C2833" : "#F4F6F6");
     }
   });
 }
