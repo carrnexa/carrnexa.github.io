@@ -6,36 +6,65 @@
    Color & Font Variables (Light Mode Default)
    ------------------------------ */
 :root {
-  --font-primary: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell,
-    "Open Sans", "Helvetica Neue", sans-serif;
+  --font-primary:
+    "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu,
+    Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   --font-mono: "Inconsolata", "SF Mono", "Fira Code", "Fira Mono", "Roboto Mono", monospace;
 
-  --color-brand-primary: #1c2833;
-  --color-brand-accent: #3e7c59;
+  /* Base colors (never change based on theme) */
+  --color-white: #ffffff;
+  --color-dark: #1c2833;
+  --color-light: #f4f6f6;
+  --color-green: #2ecc71;
+  --color-green-dark: #28b463;
+  --color-accent-green: #3e7c59;
+  --color-gray: #5d6d7e;
+  --color-gray-light: #aab7b8;
+  --color-gray-border: #d1d5db;
+  --color-gray-dark: #2e4053;
 
-  --color-action-primary: #2ecc71;
-  --color-action-primary-hover: #28b463;
+  /* Theme-aware colors (light mode default) */
+  --color-brand-primary: var(--color-dark);
+  --color-brand-accent: var(--color-accent-green);
 
-  --color-background-primary: #f4f6f6;
-  --color-background-secondary: #ffffff;
-  --color-text-primary: #1c2833;
-  --color-text-secondary: #5d6d7e;
-  --color-border: #d1d5db;
-  --color-disabled: #b0b0b0;
+  --color-action-primary: var(--color-green);
+  --color-action-primary-hover: var(--color-green-dark);
+
+  --color-background-primary: var(--color-light);
+  --color-background-secondary: var(--color-white);
+  --color-text-primary: var(--color-dark);
+  --color-text-secondary: var(--color-gray);
+  --color-border: var(--color-gray-border);
 }
 
 /* ------------------------------
    Dark Mode Variable Overrides
    ------------------------------ */
-html.dark {
-  --color-brand-primary: #f4f6f6;
-  --color-brand-accent: #3e7c59;
 
-  --color-background-primary: #1c2833;
-  --color-background-secondary: #2e4053;
-  --color-text-primary: #f4f6f6;
-  --color-text-secondary: #aab7b8;
-  --color-border: #2e4053;
+/* Auto dark mode based on system preference */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --color-brand-primary: var(--color-light);
+    --color-brand-accent: var(--color-accent-green);
+
+    --color-background-primary: var(--color-dark);
+    --color-background-secondary: var(--color-gray-dark);
+    --color-text-primary: var(--color-light);
+    --color-text-secondary: var(--color-gray-light);
+    --color-border: var(--color-gray-dark);
+  }
+}
+
+/* Manual dark mode override */
+:root[data-theme="dark"] {
+  --color-brand-primary: var(--color-light);
+  --color-brand-accent: var(--color-accent-green);
+
+  --color-background-primary: var(--color-dark);
+  --color-background-secondary: var(--color-gray-dark);
+  --color-text-primary: var(--color-light);
+  --color-text-secondary: var(--color-gray-light);
+  --color-border: var(--color-gray-dark);
 }
 
 /* =============================================
@@ -59,7 +88,9 @@ body {
   color: var(--color-text-secondary);
   background-color: var(--color-background-primary);
   line-height: 1.6;
-  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+  transition:
+    background-color 0.2s ease-in-out,
+    color 0.2s ease-in-out;
 }
 
 /* =============================================
@@ -137,7 +168,7 @@ nav {
   width: 20px;
   left: 3px;
   bottom: 3px;
-  background-color: white;
+  background-color: var(--color-white);
   transition: 0.4s;
   border-radius: 50%;
 }
@@ -145,6 +176,22 @@ nav {
   background-color: var(--color-action-primary);
 }
 .theme-toggle-input:checked + .slider:before {
+  transform: translateX(24px);
+}
+
+/* Auto-position toggle based on theme (before JS loads) */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .theme-toggle-input + .slider {
+    background-color: var(--color-action-primary);
+  }
+  :root:not([data-theme="light"]) .theme-toggle-input + .slider:before {
+    transform: translateX(24px);
+  }
+}
+:root[data-theme="dark"] .theme-toggle-input + .slider {
+  background-color: var(--color-action-primary);
+}
+:root[data-theme="dark"] .theme-toggle-input + .slider:before {
   transform: translateX(24px);
 }
 
@@ -204,18 +251,28 @@ nav {
   font-size: 1rem;
   cursor: pointer;
   text-decoration: none;
-  transition: background-color 0.2s ease-in-out, transform 0.1s ease;
+  transition:
+    background-color 0.2s ease-in-out,
+    transform 0.1s ease;
 }
 .btn:active {
   transform: translateY(1px);
 }
 .btn-primary {
   background-color: var(--color-action-primary);
-  color: #ffffff;
+  color: var(--color-white);
 }
-html.dark .btn-primary {
-  color: #1c2833;
+
+/* Dark mode button text color */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .btn-primary {
+    color: var(--color-dark);
+  }
 }
+:root[data-theme="dark"] .btn-primary {
+  color: var(--color-dark);
+}
+
 .btn-primary:hover {
   background-color: var(--color-action-primary-hover);
 }
