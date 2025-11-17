@@ -32,19 +32,10 @@
     <!-- Stylesheet -->
     <link rel="stylesheet" href="./styles/main.css" />
 
+    <!-- Theme initialization: prevent flash of wrong theme -->
     <script>
-      // This script runs before the page is rendered to prevent a flash of the wrong theme.
-      (function () {
-        const theme = localStorage.getItem("theme");
-        const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-        if (theme === "dark" || (!theme && prefersDark)) {
-          document.documentElement.classList.add("dark");
-          document.getElementById("theme-color-meta").setAttribute("content", "#1C2833");
-        } else {
-          document.documentElement.classList.remove("dark");
-          document.getElementById("theme-color-meta").setAttribute("content", "#F4F6F6");
-        }
-      })();
+      const theme = localStorage.getItem("theme");
+      if (theme) document.documentElement.setAttribute("data-theme", theme);
     </script>
   </head>
 

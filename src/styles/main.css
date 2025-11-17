@@ -28,7 +28,23 @@
 /* ------------------------------
    Dark Mode Variable Overrides
    ------------------------------ */
-html.dark {
+
+/* Auto dark mode based on system preference */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --color-brand-primary: #f4f6f6;
+    --color-brand-accent: #3e7c59;
+
+    --color-background-primary: #1c2833;
+    --color-background-secondary: #2e4053;
+    --color-text-primary: #f4f6f6;
+    --color-text-secondary: #aab7b8;
+    --color-border: #2e4053;
+  }
+}
+
+/* Manual dark mode override */
+:root[data-theme="dark"] {
   --color-brand-primary: #f4f6f6;
   --color-brand-accent: #3e7c59;
 
@@ -218,9 +234,17 @@ nav {
   background-color: var(--color-action-primary);
   color: #ffffff;
 }
-html.dark .btn-primary {
+
+/* Dark mode button text color */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .btn-primary {
+    color: #1c2833;
+  }
+}
+:root[data-theme="dark"] .btn-primary {
   color: #1c2833;
 }
+
 .btn-primary:hover {
   background-color: var(--color-action-primary-hover);
 }
