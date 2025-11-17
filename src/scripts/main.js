@@ -4,6 +4,12 @@
  * Uses data-theme attribute with CSS prefers-color-scheme
  */
 
+// Theme color constants (match CSS variables)
+const THEME_COLORS = {
+  dark: "#1c2833",
+  light: "#f4f6f6",
+};
+
 // Initialize theme meta tag on page load
 (function initializeTheme() {
   const currentTheme = document.documentElement.getAttribute("data-theme");
@@ -12,7 +18,7 @@
   const themeColorMeta = document.getElementById("theme-color-meta");
 
   if (themeColorMeta) {
-    themeColorMeta.setAttribute("content", effectiveTheme === "dark" ? "#1C2833" : "#F4F6F6");
+    themeColorMeta.setAttribute("content", THEME_COLORS[effectiveTheme]);
   }
 })();
 
@@ -63,7 +69,7 @@ function initializeThemeToggle() {
     localStorage.setItem("theme", newTheme);
 
     if (themeColorMeta) {
-      themeColorMeta.setAttribute("content", newTheme === "dark" ? "#1C2833" : "#F4F6F6");
+      themeColorMeta.setAttribute("content", THEME_COLORS[newTheme]);
     }
   });
 }
