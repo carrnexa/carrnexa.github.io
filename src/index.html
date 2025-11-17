@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+    <!-- SEO & Metadata -->
     <title>CarrNexa | Modular tools for curious minds</title>
     <meta
       name="description"
@@ -20,9 +21,6 @@
     <!-- Web App Manifest -->
     <link rel="manifest" href="/site.webmanifest" />
 
-    <!-- Theme Color -->
-    <meta name="theme-color" id="theme-color-meta" content="#1c2833" />
-
     <!-- Google Fonts Import -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -31,14 +29,16 @@
       rel="stylesheet"
     />
 
-    <!-- Stylesheet -->
-    <link rel="stylesheet" href="./styles/main.css" />
+    <!-- Theme Color -->
+    <meta name="theme-color" id="theme-color-meta" content="#1c2833" />
 
     <!-- Theme initialization: prevent flash of wrong theme -->
     <script>
       const theme = localStorage.getItem("theme");
       if (theme) document.documentElement.setAttribute("data-theme", theme);
     </script>
+    <script type="module" src="./scripts/main.js"></script>
+    <link rel="stylesheet" href="./styles/main.css" />
   </head>
 
   <body>
@@ -102,7 +102,5 @@
         <a href="mailto:hello@carrnexa.com">Email</a>
       </div>
     </footer>
-
-    <script src="./scripts/main.js"></script>
   </body>
 </html>
