@@ -18,7 +18,7 @@ export default defineConfig({
   plugins: [
     sitemap({
       hostname: "https://carrnexa.com",
-      exclude: ["/404.html"],
+      exclude: ["/404"],
     }),
   ],
 });
