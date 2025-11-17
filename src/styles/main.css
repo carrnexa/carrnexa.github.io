@@ -167,6 +167,22 @@ nav {
   transform: translateX(24px);
 }
 
+/* Auto-position toggle based on theme (before JS loads) */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .theme-toggle-input + .slider {
+    background-color: var(--color-action-primary);
+  }
+  :root:not([data-theme="light"]) .theme-toggle-input + .slider:before {
+    transform: translateX(24px);
+  }
+}
+:root[data-theme="dark"] .theme-toggle-input + .slider {
+  background-color: var(--color-action-primary);
+}
+:root[data-theme="dark"] .theme-toggle-input + .slider:before {
+  transform: translateX(24px);
+}
+
 /* --- Hero Section --- */
 .hero {
   padding: 4rem 1.5rem;
