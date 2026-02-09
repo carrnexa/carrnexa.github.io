@@ -3,7 +3,7 @@
   "github.copilot.chat.codeGeneration.useInstructionFiles": true,
   "github.copilot.chat.commitMessageGeneration.instructions": [
     {
-      "file": ".github/copilot-instructions.md"
+      "file": ".github/commit-instructions.md"
     }
   ],
 
