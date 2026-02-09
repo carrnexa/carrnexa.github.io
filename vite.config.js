@@ -12,6 +12,7 @@ export default defineConfig({
       input: {
         index: resolve(__dirname, "src/index.html"),
         notfound: resolve(__dirname, "src/404.html"),
+        license: resolve(__dirname, "src/legal/license.html"),
       },
     },
   },
