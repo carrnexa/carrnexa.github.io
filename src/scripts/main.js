@@ -1,7 +1,10 @@
 /**
- * Theme Management
- * Handles dark/light theme switching and persistence
- * Uses data-theme attribute with CSS prefers-color-scheme
+ * Theme Management and Dynamic Year Display.
+ *
+ * This script handles the following functionalities:
+ * 1. Initializes the theme based on user preference or system settings.
+ * 2. Updates the footer with the current year.
+ * 3. Updates the theme color meta tag to match the active theme.
  */
 
 // Theme color constants (match CSS variables)
@@ -23,16 +26,7 @@ const THEME_COLORS = {
 })();
 
 /**
- * DOM Ready Handler
- * Executes when DOM is fully loaded
- */
-function onDOMReady() {
-  initializeYearDisplay();
-  initializeThemeToggle();
-}
-
-/**
- * Update footer with current year
+ * Update the footer with the current year.
  */
 function initializeYearDisplay() {
   const currentYearElement = document.getElementById("current-year");
@@ -43,7 +37,7 @@ function initializeYearDisplay() {
 }
 
 /**
- * Setup theme toggle functionality
+ * Set up theme toggle functionality.
  */
 function initializeThemeToggle() {
   const themeToggle = document.getElementById("theme-toggle");
@@ -74,7 +68,15 @@ function initializeThemeToggle() {
   });
 }
 
-// Initialize when DOM is ready
+/**
+ * Initialize all functions once the DOM is fully loaded.
+ */
+function onDOMReady() {
+  initializeYearDisplay();
+  initializeThemeToggle();
+}
+
+// Initialize the script when the DOM is ready
 if (document.readyState === "loading") {
   document.addEventListener("DOMContentLoaded", onDOMReady);
 } else {
