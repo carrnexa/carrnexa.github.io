@@ -45,30 +45,35 @@
 
   /* Base colors (never change based on theme) */
   --color-white: #ffffff;
-  --color-dark: #1c2833;
+  --color-black: #000000;
+
   --color-light: #f4f6f6;
+  --color-dark: #1c2833;
+
   --color-green: #2ecc71;
   --color-green-dark: #28b463;
-  --color-accent-green: #3e7c59;
+  --color-green-accent: #3e7c59;
+
   --color-gray: #5d6d7e;
   --color-gray-light: #aab7b8;
   --color-gray-border: #d1d5db;
   --color-gray-dark: #2e4053;
 
-  /* Theme-aware colors (dark mode default) */
+  /* Brand Colors */
   --color-brand-primary: var(--color-light);
-  --color-brand-accent: var(--color-accent-green);
+  --color-brand-accent: var(--color-green-accent);
+
+  --color-background-primary: var(--color-dark);
+  --color-background-secondary: var(--color-gray-dark);
+
+  --color-text-primary: var(--color-light);
+  --color-text-secondary: var(--color-gray-light);
+
+  --color-border: var(--color-gray-dark);
 
   --color-action-primary: var(--color-green);
   --color-action-primary-hover: var(--color-green-dark);
 
-  --color-background-primary: var(--color-dark);
-  --color-background-secondary: var(--color-gray-dark);
-  --color-text-primary: var(--color-light);
-  --color-text-secondary: var(--color-gray-light);
-  --color-border: var(--color-gray-dark);
-
-  /* Browser chrome color */
   --color-theme-meta: var(--color-background-primary);
 }
 
@@ -76,14 +81,14 @@
 @media (prefers-color-scheme: light) {
   :root:not([data-theme="dark"]) {
     --color-brand-primary: var(--color-dark);
-    --color-brand-accent: var(--color-accent-green);
-
+    --color-brand-accent: var(--color-green-accent);
     --color-background-primary: var(--color-light);
     --color-background-secondary: var(--color-white);
     --color-text-primary: var(--color-dark);
     --color-text-secondary: var(--color-gray);
     --color-border: var(--color-gray-border);
-
+    --color-action-primary: var(--color-green);
+    --color-action-primary-hover: var(--color-green-dark);
     --color-theme-meta: var(--color-background-primary);
   }
 }
@@ -91,15 +96,15 @@
 /* Manual light mode override */
 :root[data-theme="light"] {
   --color-brand-primary: var(--color-dark);
-  --color-brand-accent: var(--color-accent-green);
-
+  --color-brand-accent: var(--color-green-accent);
   --color-background-primary: var(--color-light);
   --color-background-secondary: var(--color-white);
   --color-text-primary: var(--color-dark);
-
-  --color-theme-meta: var(--color-background-primary);
   --color-text-secondary: var(--color-gray);
   --color-border: var(--color-gray-border);
+  --color-action-primary: var(--color-green);
+  --color-action-primary-hover: var(--color-green-dark);
+  --color-theme-meta: var(--color-background-primary);
 }
 
 /* --- Reset & Base Styles --- */
