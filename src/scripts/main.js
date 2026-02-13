@@ -74,6 +74,7 @@ function initializeThemeToggle() {
 function onDOMReady() {
   initializeYearDisplay();
   initializeThemeToggle();
+  updateThemeColorMeta(); // Safety check in case js runs before CSS is fully applied
 }
 
 // Initialize the script when the DOM is ready
