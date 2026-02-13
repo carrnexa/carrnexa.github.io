@@ -53,12 +53,12 @@
     />
 
     <!-- Theme Color -->
-    <meta name="theme-color" id="theme-color-meta" content="#f4f6f6" />
+    <meta name="theme-color" id="theme-color-meta" content="#1c2833" />
 
     <!-- Theme Initialization: Prevent a flash of the wrong theme. -->
     <script>
       const theme = localStorage.getItem("theme");
-      if (theme) document.documentElement.setAttribute("data-theme", theme);
+      document.documentElement.setAttribute("data-theme", theme || "dark");
     </script>
     <script type="module" src="./scripts/main.js"></script>
     <link rel="stylesheet" href="./styles/main.css" />

@@ -67,6 +67,9 @@
   --color-text-primary: var(--color-light);
   --color-text-secondary: var(--color-gray-light);
   --color-border: var(--color-gray-dark);
+
+  /* Browser chrome color */
+  --color-theme-meta: var(--color-background-primary);
 }
 
 /* Auto light mode based on system preference */
@@ -80,6 +83,8 @@
     --color-text-primary: var(--color-dark);
     --color-text-secondary: var(--color-gray);
     --color-border: var(--color-gray-border);
+
+    --color-theme-meta: var(--color-background-primary);
   }
 }
 
@@ -91,6 +96,8 @@
   --color-background-primary: var(--color-light);
   --color-background-secondary: var(--color-white);
   --color-text-primary: var(--color-dark);
+
+  --color-theme-meta: var(--color-background-primary);
   --color-text-secondary: var(--color-gray);
   --color-border: var(--color-gray-border);
 }
