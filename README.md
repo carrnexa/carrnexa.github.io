@@ -1,11 +1,100 @@
-# CarrNexa Website
+# CarrNexa Frontend
 
-This repository contains the source code and content for the official CarrNexa website, available at [carrnexa.com](https://carrnexa.com).
+**Density. Performance. No Abstraction.**
+
+The official frontend for [CarrNexa](https://carrnexa.com). This is a high-performance, static site built without heavy UI frameworks. It prioritizes **Time-to-Information** and **Architectural Transparency** over cosmetic fluff.
+
+## Philosophy
+
+- **McMaster-Carr Standard**: We value information density and speed above all else.
+- **Zero Runtime Overhead**: No client-side hydration, no virtual DOM, no heavy bundles. We ship raw HTML, CSS, and minimal JS.
+- **Systems Thinking**: The frontend is treated as a compiled artifact, not a dynamic application.
+
+## Architecture
+
+This project uses **Vite** in Multi-Page App (MPA) mode to act as a modern build tool for static files.
+
+### The Hybrid Asset Pipeline
+
+We strictly separate assets based on their consumption model:
+
+1.  **Source (`src/assets/`)**:
+    - **Content**: Fonts, Styles, Scripts.
+    - **Behavior**: Processed by Vite. These are hashed (`file.a8f2.css`) for aggressive cache-busting.
+    - **Performance**: Fonts are preloaded in critical paths to prevent layout shifts.
+
+2.  **Public (`public/assets/`)**:
+    - **Content**: Favicons, Manifests, Robots.txt, Open Graph Images.
+    - **Behavior**: Copied verbatim to the build root.
+    - **Reasoning**: These require stable, predictable URLs for external consumers (crawlers, OS UIs) that cannot parse hashed filenames.
+
+### Dark Mode Strategy
+
+To prevent the common "Flash of Unstyled Content" (FOUC), theme logic is executed:
+
+1.  **CSS Layer**: `@media (prefers-color-scheme)` handles the default state before JS loads.
+2.  **Blocking JS**: A minimal script in `<head>` resolves the user's local override before the `<body>` renders.
+
+## Getting Started
+
+### Prerequisites
+
+- **Node.js**: v20 or higher
+- **Package Manager**: npm (or pnpm/yarn)
+
+### Installation
+
+```bash
+# 1. Clone the repository
+git clone git@github.com:carrnexa/carrnexa-frontend.git
+cd carrnexa-frontend
+
+# 2. Install Dependencies
+npm install
+```
+
+### Development
+
+We use `src/` as the project root to keep import paths clean.
+
+```bash
+# Start the dev server (Hot Module Replacement)
+npm run dev
+
+# Build for production (Outputs to dist/)
+npm run build
+
+# Preview the production build locally
+npm run preview
+```
+
+## Directory Structure
+
+```text
+/
+├── public/              # Stable assets (copied to dist root)
+├── src/                 # Application source
+│   ├── assets/          # Hashed assets (Fonts/Images)
+│   ├── scripts/         # JS Modules
+│   ├── styles/          # CSS
+│   ├── legal/           # License & Policy HTML
+│   ├── index.html       # Entry point
+│   └── 404.html         # Error page
+└── vite.config.js       # Build configuration
+```
 
 ## Licensing
 
-This repository uses a dual-license model to clearly separate the underlying technology from the creative work it displays.
+This repository uses a **Dual-License Model** to strictly separate technology from brand identity.
 
-- **Source Code ([MIT License](LICENSE-CODE)):** The source code used to build and operate this website is licensed under the permissive MIT License. This includes, but is not limited to, all `.html`, `.css`, `.js`, and configuration files (e.g., `vite.config.js`). Code examples and snippets presented within articles are also covered by the MIT License to encourage learning and reuse.
+### 1. Source Code ([MIT License](./LICENSE-CODE))
 
-- **Content ([CC BY-NC 4.0](LICENSE-CONTENT)):** All written and visual content is licensed under the Creative Commons Attribution-NonCommercial 4.0 International License, unless otherwise stated. This includes, but is not limited to, the text, images, diagrams, and logos found in articles, tutorials, and on the website's pages. This license allows for non-commercial sharing and adaptation with proper attribution.
+**Applies to**: `.html`, `.css`, `.js`, build configurations, and structural logic.
+
+The underlying engineering and code patterns are open for educational use and adaptation. You are free to use this architecture to build your own high-performance site.
+
+### 2. Content ([CC BY-NC 4.0](./LICENSE-CONTENT))
+
+**Applies to**: Articles, Essays, Logos, Brand Assets, and Visual Design.
+
+You may adapt and share this content for non-commercial purposes, provided you give appropriate credit and indicate if changes were made.

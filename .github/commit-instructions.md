@@ -1,53 +1,27 @@
-# Commit message instructions
+# Commit Message Instructions
 
-Commit messages are intentionally lightweight in this repo. PRs are the main source of truth for details, discussion, and rationale. Commits exist mostly to reduce the search space when scanning history.
+## Purpose
 
-## Style goals
-
-- Capture the high-level intent of the change.
-- Include only the most important detail(s) that help future-you grep/skim.
-- Avoid long change logs. If it needs many bullets, it belongs in the PR.
+Commit messages in this repo are meant to provide a condensed summary of the changes being committed. Since all code changes are expected to be reviewed in associated PRs, these messages are often not reviewed in detail. Instead, they are meant to act like a timeline, allowing reviewers to quickly pinpoint moments in time that they may be interested in.
 
 ## Format
 
-Use this format:
+Every commit message should follow the same format, consisting of a subject line and an optional body:
 
-- Subject: One short sentence, imperative mood (e.g., "Add", "Fix", "Refactor").
-- Body (optional): 1-4 short English sentences.
+- **Subject Line**: A single sentence ending in a period summarizing the change.
+- **Body**: An optional section that provides additional context, reasoning, or explanations for the change.
 
-## Rules
+## Guidelines
+
+- Separate the subject line from the body with a blank line.
+- Use the body to explain the "why" and "what" of the change, not the "how".
+- Prefer plain English over implementation details.
+- Use ASCII punctuation only (no smart quotes or em-dashes).
+- Prioritize new information over refactors or formatting changes.
+
+## What to Avoid
 
 - Do not use conventional commit prefixes (no "feat:", "fix:", etc.).
-    - Tickets/IDs are handled separately by the author.
-- Keep the subject under ~72 characters when practical.
-- Prefer plain English over implementation details.
 - Do not list files changed or exhaustive bullet points.
-- Mention behavior/architecture changes only if they affect future work.
-- Use ASCII punctuation only (no smart quotes or em-dashes).
-
-## What to include (good)
-
-- What changed at a feature level (what a user/developer gets now).
-- The key reason/constraint, if it is not obvious.
-- The main architectural boundary or invariant, if the commit establishes one.
-
-## What to avoid
-
-- A play-by-play of every edit.
-- Internal refactors without describing the purpose.
-- Large multi-topic commits. Split if you can do so safely.
-
-## Examples
-
-Subject only:
-
-- `Add logging utility for consistent log formatting.`
-- `Fix bug in user authentication flow.`
-
-Subject + short body:
-
-```txt
-Add logging utility for consistent log formatting.
-
-This utility provides a standardized way to format log messages across the application, improving readability and debugging efficiency.
-```
+- Do not include implementation details or code snippets in the commit message.
+- Do not use emojis or non-standard characters.

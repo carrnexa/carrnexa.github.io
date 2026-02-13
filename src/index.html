@@ -8,16 +8,65 @@
     <title>CarrNexa | Modular Tools For Curious Minds</title>
     <meta
       name="description"
-      content="CarrNexa builds high-performance software driven by pragmatic engineering and a \
-      deep respect for craftsmanship."
+      content="CarrNexa builds high-performance software driven by pragmatic engineering and a deep respect for craftsmanship."
     />
+    <link rel="canonical" href="https://carrnexa.com/" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://carrnexa.com/" />
+    <meta property="og:site_name" content="CarrNexa" />
+    <meta property="og:title" content="CarrNexa | Modular Tools For Curious Minds" />
+    <meta
+      property="og:description"
+      content="CarrNexa builds high-performance software driven by pragmatic engineering and a deep respect for craftsmanship."
+    />
+    <meta
+      property="og:image"
+      content="https://carrnexa.com/assets/icons/android-chrome-512x512.png"
+    />
+    <meta property="og:image:alt" content="CarrNexa logo" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="CarrNexa | Modular Tools For Curious Minds" />
+    <meta
+      name="twitter:description"
+      content="CarrNexa builds high-performance software driven by pragmatic engineering and a deep respect for craftsmanship."
+    />
+    <meta
+      name="twitter:image"
+      content="https://carrnexa.com/assets/icons/android-chrome-512x512.png"
+    />
+    <meta name="twitter:image:alt" content="CarrNexa logo" />
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "WebSite",
+            "name": "CarrNexa",
+            "alternateName": ["CNX", "CarrNexa Systems"],
+            "url": "https://carrnexa.com/"
+          },
+          {
+            "@type": "Organization",
+            "name": "CarrNexa",
+            "url": "https://carrnexa.com/",
+            "logo": "https://carrnexa.com/assets/icons/android-chrome-512x512.png",
+            "sameAs": ["https://github.com/carrnexa"]
+          }
+        ]
+      }
+    </script>
 
     <!-- Favicon and Icon Links -->
     <link rel="icon" href="/favicon.ico" />
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-    <link rel="icon" href="/favicon-16x16.png" type="image/png" sizes="16x16" />
-    <link rel="icon" href="/favicon-32x32.png" type="image/png" sizes="32x32" />
-    <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" />
+    <link rel="icon" href="/assets/icons/favicon-16x16.png" type="image/png" sizes="16x16" />
+    <link rel="icon" href="/assets/icons/favicon-32x32.png" type="image/png" sizes="32x32" />
+    <link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.png" sizes="180x180" />
 
     <!-- Web App Manifest -->
     <link rel="manifest" href="/site.webmanifest" />
@@ -27,41 +76,27 @@
       rel="preload"
       as="font"
       type="font/woff2"
-      href="/fonts/inter-v20-latin-regular.woff2"
+      href="/assets/fonts/inter-v20-latin-regular.woff2"
       crossorigin
     />
     <link
       rel="preload"
       as="font"
       type="font/woff2"
-      href="/fonts/inter-v20-latin-700.woff2"
-      crossorigin
-    />
-    <link
-      rel="preload"
-      as="font"
-      type="font/woff2"
-      href="/fonts/inconsolata-v37-latin-regular.woff2"
-      crossorigin
-    />
-    <link
-      rel="preload"
-      as="font"
-      type="font/woff2"
-      href="/fonts/inconsolata-v37-latin-700.woff2"
+      href="/assets/fonts/inter-v20-latin-700.woff2"
       crossorigin
     />
 
     <!-- Theme Color -->
-    <meta name="theme-color" id="theme-color-meta" content="#f4f6f6" />
+    <meta name="theme-color" id="theme-color-meta" content="#1c2833" />
 
     <!-- Theme Initialization: Prevent a flash of the wrong theme. -->
     <script>
       const theme = localStorage.getItem("theme");
-      if (theme) document.documentElement.setAttribute("data-theme", theme);
+      document.documentElement.setAttribute("data-theme", theme || "dark");
     </script>
-    <script type="module" src="./scripts/main.js"></script>
-    <link rel="stylesheet" href="./styles/main.css" />
+    <script type="module" src="/scripts/main.js"></script>
+    <link rel="stylesheet" href="/styles/main.css" />
   </head>
 
   <body>

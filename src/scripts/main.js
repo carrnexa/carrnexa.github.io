@@ -7,22 +7,25 @@
  * 3. Updates the theme color meta tag to match the active theme.
  */
 
-// Theme color constants (match CSS variables)
-const THEME_COLORS = {
-  dark: "#1c2833",
-  light: "#f4f6f6",
-};
+function getThemeColorFromCss() {
+  return getComputedStyle(document.documentElement).getPropertyValue("--color-theme-meta").trim();
+}
+
+function updateThemeColorMeta() {
+  const themeColorMeta = document.getElementById("theme-color-meta");
+  if (!themeColorMeta) {
+    return;
+  }
+
+  const themeColor = getThemeColorFromCss();
+  if (themeColor) {
+    themeColorMeta.setAttribute("content", themeColor);
+  }
+}
 
 // Initialize theme meta tag on page load
 (function initializeTheme() {
-  const currentTheme = document.documentElement.getAttribute("data-theme");
-  const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-  const effectiveTheme = currentTheme || (prefersDark ? "dark" : "light");
-  const themeColorMeta = document.getElementById("theme-color-meta");
-
-  if (themeColorMeta) {
-    themeColorMeta.setAttribute("content", THEME_COLORS[effectiveTheme]);
-  }
+  updateThemeColorMeta();
 })();
 
 /**
@@ -41,7 +44,6 @@ function initializeYearDisplay() {
  */
 function initializeThemeToggle() {
   const themeToggle = document.getElementById("theme-toggle");
-  const themeColorMeta = document.getElementById("theme-color-meta");
 
   if (!themeToggle) {
     console.warn("Theme toggle element not found");
@@ -62,9 +64,7 @@ function initializeThemeToggle() {
     document.documentElement.setAttribute("data-theme", newTheme);
     localStorage.setItem("theme", newTheme);
 
-    if (themeColorMeta) {
-      themeColorMeta.setAttribute("content", THEME_COLORS[newTheme]);
-    }
+    updateThemeColorMeta();
   });
 }
 
@@ -74,6 +74,7 @@ function initializeThemeToggle() {
 function onDOMReady() {
   initializeYearDisplay();
   initializeThemeToggle();
+  updateThemeColorMeta(); // Safety check in case js runs before CSS is fully applied
 }
 
 // Initialize the script when the DOM is ready
