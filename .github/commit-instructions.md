@@ -1,53 +1,29 @@
-# Commit message instructions
+# Commit Message Instructions
 
-Commit messages are intentionally lightweight in this repo. PRs are the main source of truth for details, discussion, and rationale. Commits exist mostly to reduce the search space when scanning history.
-
-## Style goals
-
-- Capture the high-level intent of the change.
-- Include only the most important detail(s) that help future-you grep/skim.
-- Avoid long change logs. If it needs many bullets, it belongs in the PR.
+Commit messages should be concise and focused on the high-level intent of the change. They are not meant to be exhaustive change logs; instead, they should capture the most important details that will help future developers understand the purpose of the change when scanning history. For more detailed discussions and rationale, refer to the associated PRs.
 
 ## Format
 
-Use this format:
+Every commit message should include a subject line, and optionally a body:
 
-- Subject: One short sentence, imperative mood (e.g., "Add", "Fix", "Refactor").
-- Body (optional): 1-4 short English sentences.
+- **Subject**: A single short sentence summarizing the change.
+- **Body**: A more detailed explanation of the change.
 
-## Rules
+## Guidelines
+
+- Keep the subject line under ~80 characters when practical.
+- Use the body to explain the "why" and "what" of the change, not the "how".
+- Prefer plain English over implementation details.
+- Use ASCII punctuation only (no smart quotes or em-dashes).
+- Prioritize new information over refactors or formatting changes.
+
+## What Not To Do
 
 - Do not use conventional commit prefixes (no "feat:", "fix:", etc.).
-    - Tickets/IDs are handled separately by the author.
-- Keep the subject under ~72 characters when practical.
-- Prefer plain English over implementation details.
 - Do not list files changed or exhaustive bullet points.
-- Mention behavior/architecture changes only if they affect future work.
-- Use ASCII punctuation only (no smart quotes or em-dashes).
+- Do not include implementation details or code snippets in the commit message.
+- Do not use emojis or non-standard characters.
 
-## What to include (good)
+## Important Note
 
-- What changed at a feature level (what a user/developer gets now).
-- The key reason/constraint, if it is not obvious.
-- The main architectural boundary or invariant, if the commit establishes one.
-
-## What to avoid
-
-- A play-by-play of every edit.
-- Internal refactors without describing the purpose.
-- Large multi-topic commits. Split if you can do so safely.
-
-## Examples
-
-Subject only:
-
-- `Add logging utility for consistent log formatting.`
-- `Fix bug in user authentication flow.`
-
-Subject + short body:
-
-```txt
-Add logging utility for consistent log formatting.
-
-This utility provides a standardized way to format log messages across the application, improving readability and debugging efficiency.
-```
+Check if added code is actually new and not just moved. If text has been removed in one area and appears in another area, this is a refactor or rename, not a new addition. The commit message should reflect the intent of the change rather than the mechanics.
