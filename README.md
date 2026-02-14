@@ -75,11 +75,11 @@ npm run preview
 ├── public/              # Stable assets (copied to dist root)
 ├── src/                 # Application source
 │   ├── assets/          # Hashed assets (Fonts/Images)
+│   ├── legal/           # License & Policy HTML
 │   ├── scripts/         # JS Modules
 │   ├── styles/          # CSS
-│   ├── legal/           # License & Policy HTML
-│   ├── index.html       # Entry point
-│   └── 404.html         # Error page
+│   ├── 404.html         # Error page
+│   └── index.html       # Entry point
 └── vite.config.js       # Build configuration
 ```
 
