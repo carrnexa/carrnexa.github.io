@@ -16,18 +16,19 @@
 
   /* Markdown */
   "markdown.validate.enabled": true,
-  "markdown.extension.completion.enabled": true,
-  "markdown.extension.toc.levels": "2..6",
-  "markdown.extension.toc.omittedFromToc": {
-    "README.md": ["## Table of Contents"]
+  "markdownlint.config": {
+    "MD007": {
+      "indent": 4
+    },
+    "MD033": {
+      "table_allowed_elements": ["br"]
+    }
   },
-  "markdown.extension.list.indentationSize": "inherit",
 
   /* Prettier */
   "prettier.printWidth": 100,
   "prettier.tabWidth": 4,
   "prettier.bracketSpacing": false,
-  "prettier.resolveGlobalModules": true,
 
   /* XML */
   "xml.format.emptyElements": "collapse",
@@ -90,7 +91,7 @@
     "editor.tabSize": 2
   },
   "[xml]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.defaultFormatter": "redhat.vscode-xml",
     "prettier.tabWidth": 2,
     "editor.tabSize": 2
   },
