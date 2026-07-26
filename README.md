@@ -1,14 +1,14 @@
-# CarrNexa Frontend
+# CarrNexa Website UI
 
 **Density. Performance. No Abstraction.**
 
-The official frontend for [CarrNexa](https://carrnexa.com). This is a high-performance, static site built without heavy UI frameworks. It prioritizes **Time-to-Information** and **Architectural Transparency** over cosmetic fluff.
+The official website UI for [CarrNexa](https://carrnexa.com). This is a high-performance, static site built without heavy UI frameworks. It prioritizes **Time-to-Information** and **Architectural Transparency** over cosmetic fluff.
 
 ## Philosophy
 
 - **McMaster-Carr Standard**: We value information density and speed above all else.
 - **Zero Runtime Overhead**: No client-side hydration, no virtual DOM, no heavy bundles. We ship raw HTML, CSS, and minimal JS.
-- **Systems Thinking**: The frontend is treated as a compiled artifact, not a dynamic application.
+- **Systems Thinking**: The website UI is treated as a compiled artifact, not a dynamic application.
 
 ## Architecture
 
@@ -18,12 +18,12 @@ This project uses **Vite** in Multi-Page App (MPA) mode to act as a modern build
 
 We strictly separate assets based on their consumption model:
 
-1.  **Source (`src/assets/`)**:
+1. **Source (`src/assets/`)**:
     - **Content**: Fonts, Styles, Scripts.
     - **Behavior**: Processed by Vite. These are hashed (`file.a8f2.css`) for aggressive cache-busting.
     - **Performance**: Fonts are preloaded in critical paths to prevent layout shifts.
 
-2.  **Public (`public/assets/`)**:
+2. **Public (`public/assets/`)**:
     - **Content**: Favicons, Manifests, Robots.txt, Open Graph Images.
     - **Behavior**: Copied verbatim to the build root.
     - **Reasoning**: These require stable, predictable URLs for external consumers (crawlers, OS UIs) that cannot parse hashed filenames.
@@ -32,30 +32,36 @@ We strictly separate assets based on their consumption model:
 
 To prevent the common "Flash of Unstyled Content" (FOUC), theme logic is executed:
 
-1.  **CSS Layer**: `@media (prefers-color-scheme)` handles the default state before JS loads.
-2.  **Blocking JS**: A minimal script in `<head>` resolves the user's local override before the `<body>` renders.
+1. **CSS Layer**: `@media (prefers-color-scheme)` handles the default state before JS loads.
+2. **Blocking JS**: A minimal script in `<head>` resolves the user's local override before the `<body>` renders.
 
-## Getting Started
+## Development
 
 ### Prerequisites
 
 - **Node.js**: v20 or higher
 - **Package Manager**: npm (or pnpm/yarn)
 
-### Installation
+### Getting the Code
+
+If you don't already have a local copy of the code, clone the repository and move into the working directory
 
 ```bash
-# 1. Clone the repository
-git clone git@github.com:carrnexa/carrnexa-frontend.git
-cd carrnexa-frontend
+git clone git@github.com:carrnexa/www-ui.git
+cd www-ui
+```
 
-# 2. Install Dependencies
+### Setup
+
+From the repository root, install the dependencies:
+
+```bash
 npm install
 ```
 
-### Development
+### Running and Building
 
-We use `src/` as the project root to keep import paths clean.
+The following commands are available for development and production workflows:
 
 ```bash
 # Start the dev server (Hot Module Replacement)
