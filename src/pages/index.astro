@@ -1,0 +1,81 @@
+---
+import {siteConfig} from "@/config/site";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+
+const principles = [
+  {
+    title: "Prefer simpler tools",
+    body: "I would rather use plain HTML, CSS, SQL, and explicit types than add layers that hide behavior. More machinery raises the maintenance cost.",
+  },
+  {
+    title: "Keep behavior visible",
+    body: "If I cannot explain how something works, I do not trust it yet. Public code, direct docs, and explicit interfaces make review easier.",
+  },
+  {
+    title: "Design the boundaries",
+    body: "Pages, services, scripts, and protocols only make sense in context. I care about how parts communicate just as much as the parts themselves.",
+  },
+  {
+    title: "Optimize the critical path",
+    body: "Performance work should follow the bottleneck, not ego. Latency, resource use, and responsiveness matter because they change how software feels.",
+  },
+] as const;
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      name: siteConfig.name,
+      alternateName: siteConfig.alternateNames,
+      url: `${siteConfig.siteUrl}/`,
+    },
+    {
+      "@type": "Organization",
+      name: siteConfig.name,
+      url: `${siteConfig.siteUrl}/`,
+      logo: `${siteConfig.siteUrl}${siteConfig.socialImagePath}`,
+      sameAs: [siteConfig.githubUrl],
+    },
+  ],
+};
+---
+
+<BaseLayout
+  title="CarrNexa | Software built to be understood"
+  description="CarrNexa publishes fast, inspectable software with explicit tradeoffs and minimal frontend overhead."
+  canonicalPath="/"
+  structuredData={structuredData}
+>
+  <section class="hero container">
+    <h1 class="hero-title text-primary">Software built to be understood</h1>
+    <p class="hero-subtitle">Fast, explicit, and easy to inspect.</p>
+    <p>
+      {siteConfig.name} is where I publish software, notes, and experiments built around
+      performance, clear interfaces, and behavior I can explain end to end. I prefer small tools,
+      direct code, and tradeoffs that stay visible.
+    </p>
+    <a
+      href={siteConfig.githubUrl}
+      class="btn btn-primary"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      Browse repositories
+    </a>
+  </section>
+
+  <section class="values container">
+    <h2 class="section-title text-primary">How I build</h2>
+    <div class="values-grid">
+      {
+        principles.map((principle) => (
+          <div class="value-item">
+            <h3 class="text-primary">{principle.title}</h3>
+            <p>{principle.body}</p>
+          </div>
+        ))
+      }
+    </div>
+  </section>
+</BaseLayout>

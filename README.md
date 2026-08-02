@@ -1,106 +1,86 @@
 # CarrNexa Website UI
 
-**Density. Performance. No Abstraction.**
+This repo contains the public CarrNexa site.
 
-The official website UI for [CarrNexa](https://carrnexa.com). This is a high-performance, static site built without heavy UI frameworks. It prioritizes **Time-to-Information** and **Architectural Transparency** over cosmetic fluff.
+The site is built with Astro, static output, shared layouts, and a small amount of client-side JavaScript for theme state and similar low-cost behavior. The goal is simple: keep pages fast, easy to inspect, and easy to extend without turning the whole frontend into a client-heavy app.
 
-## Philosophy
+## Approach
 
-- **McMaster-Carr Standard**: We value information density and speed above all else.
-- **Zero Runtime Overhead**: No client-side hydration, no virtual DOM, no heavy bundles. We ship raw HTML, CSS, and minimal JS.
-- **Systems Thinking**: The website UI is treated as a compiled artifact, not a dynamic application.
+- Build static HTML by default.
+- Keep shared page chrome in layouts and components instead of copying it into every page.
+- Use browser-side JavaScript only where the browser actually needs to do work.
+- Keep future private or data-heavy features isolated so public pages do not pay for them.
 
 ## Architecture
 
-This project uses **Vite** in Multi-Page App (MPA) mode to act as a modern build tool for static files.
+Astro is used as a build-time composition layer. It gives the site reusable layouts and components while still shipping static pages.
 
-### The Hybrid Asset Pipeline
+### Asset model
 
-We strictly separate assets based on their consumption model:
+1. **Source (`src/`)**
+   - Astro pages, layouts, components, styles, and scripts.
+   - Imported assets are fingerprinted at build time for cache busting.
 
-1. **Source (`src/assets/`)**:
-    - **Content**: Fonts, Styles, Scripts.
-    - **Behavior**: Processed by Vite. These are hashed (`file.a8f2.css`) for aggressive cache-busting.
-    - **Performance**: Fonts are preloaded in critical paths to prevent layout shifts.
+2. **Public (`public/`)**
+   - Stable URL assets such as icons, manifests, and crawler-facing files.
+   - Files are copied as-is to the build output.
 
-2. **Public (`public/assets/`)**:
-    - **Content**: Favicons, Manifests, Robots.txt, Open Graph Images.
-    - **Behavior**: Copied verbatim to the build root.
-    - **Reasoning**: These require stable, predictable URLs for external consumers (crawlers, OS UIs) that cannot parse hashed filenames.
+### Theme behavior
 
-### Dark Mode Strategy
+Theme handling stays small and explicit:
 
-To prevent the common "Flash of Unstyled Content" (FOUC), theme logic is executed:
+1. CSS defines the system-preference default.
+2. An inline head script applies any saved override before the page renders.
+3. A small module updates the toggle, current year, and `theme-color` meta tag after load.
 
-1. **CSS Layer**: `@media (prefers-color-scheme)` handles the default state before JS loads.
-2. **Blocking JS**: A minimal script in `<head>` resolves the user's local override before the `<body>` renders.
+### Future direction
+
+Public pages should stay static.
+
+Authenticated or data-heavy features can sit behind the same site and call backend APIs without forcing the entire frontend into a single-page app. If a future page genuinely needs richer interactivity, add it as a targeted island instead of making hydration the default.
 
 ## Development
 
 ### Prerequisites
 
-- **Node.js**: v20 or higher
-- **Package Manager**: npm (or pnpm/yarn)
-
-### Getting the Code
-
-If you don't already have a local copy of the code, clone the repository and move into the working directory
-
-```bash
-git clone git@github.com:carrnexa/www-ui.git
-cd www-ui
-```
+- Node.js 20+
+- npm
 
 ### Setup
-
-From the repository root, install the dependencies:
 
 ```bash
 npm install
 ```
 
-### Running and Building
-
-The following commands are available for development and production workflows:
+### Commands
 
 ```bash
-# Start the dev server (Hot Module Replacement)
 npm run dev
-
-# Build for production (Outputs to dist/)
 npm run build
-
-# Preview the production build locally
 npm run preview
+npm run check
 ```
 
 ## Directory Structure
 
 ```text
 /
-├── public/              # Stable assets (copied to dist root)
-├── src/                 # Application source
-│   ├── assets/          # Hashed assets (Fonts/Images)
-│   ├── legal/           # License & Policy HTML
-│   ├── scripts/         # JS Modules
-│   ├── styles/          # CSS
-│   ├── 404.html         # Error page
-│   └── index.html       # Entry point
-└── vite.config.js       # Build configuration
+├── public/              # Stable public assets copied as-is
+├── src/
+│   ├── assets/          # Imported assets fingerprinted by the build
+│   ├── components/      # Shared page chrome
+│   ├── config/          # Shared site metadata and links
+│   ├── layouts/         # Reusable page shells
+│   ├── pages/           # Astro file-based routes
+│   ├── scripts/         # Small browser-side modules
+│   └── styles/          # Global styles and design tokens
+├── astro.config.mjs     # Astro configuration
+└── tsconfig.json        # Astro config and source aliases
 ```
 
 ## Licensing
 
-This repository uses a **Dual-License Model** to strictly separate technology from brand identity.
+This repo uses a split license model.
 
-### 1. Source Code ([MIT License](./LICENSE-CODE))
-
-**Applies to**: `.html`, `.css`, `.js`, build configurations, and structural logic.
-
-The underlying engineering and code patterns are open for educational use and adaptation. You are free to use this architecture to build your own high-performance site.
-
-### 2. Content ([CC BY-NC 4.0](./LICENSE-CONTENT))
-
-**Applies to**: Articles, Essays, Logos, Brand Assets, and Visual Design.
-
-You may adapt and share this content for non-commercial purposes, provided you give appropriate credit and indicate if changes were made.
+- Source code is licensed under the [MIT License](./LICENSE-CODE).
+- Site content and brand assets are licensed under [CC BY-NC 4.0](./LICENSE-CONTENT), unless a file says otherwise.

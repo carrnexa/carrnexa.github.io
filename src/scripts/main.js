@@ -23,6 +23,23 @@ function updateThemeColorMeta() {
   }
 }
 
+function readStoredTheme() {
+  try {
+    const storedTheme = localStorage.getItem("theme");
+    return storedTheme === "dark" || storedTheme === "light" ? storedTheme : null;
+  } catch {
+    return null;
+  }
+}
+
+function writeStoredTheme(theme) {
+  try {
+    localStorage.setItem("theme", theme);
+  } catch {
+    // Ignore storage access failures and keep the theme change in-memory.
+  }
+}
+
 // Initialize theme meta tag on page load
 (function initializeTheme() {
   updateThemeColorMeta();
@@ -51,7 +68,7 @@ function initializeThemeToggle() {
   }
 
   // Determine current effective theme
-  const currentTheme = document.documentElement.getAttribute("data-theme");
+  const currentTheme = readStoredTheme() ?? document.documentElement.getAttribute("data-theme");
   const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
   const isDarkMode = currentTheme === "dark" || (!currentTheme && prefersDark);
 
@@ -62,7 +79,7 @@ function initializeThemeToggle() {
     const newTheme = themeToggle.checked ? "dark" : "light";
 
     document.documentElement.setAttribute("data-theme", newTheme);
-    localStorage.setItem("theme", newTheme);
+    writeStoredTheme(newTheme);
 
     updateThemeColorMeta();
   });

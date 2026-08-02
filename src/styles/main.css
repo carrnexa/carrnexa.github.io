@@ -9,7 +9,7 @@
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: url("/assets/fonts/inter-v20-latin-regular.woff2") format("woff2");
+  src: url("../assets/fonts/inter-v20-latin-regular.woff2") format("woff2");
 }
 
 @font-face {
@@ -17,7 +17,7 @@
   font-style: normal;
   font-weight: 700;
   font-display: swap;
-  src: url("/assets/fonts/inter-v20-latin-700.woff2") format("woff2");
+  src: url("../assets/fonts/inter-v20-latin-700.woff2") format("woff2");
 }
 
 @font-face {
@@ -25,7 +25,7 @@
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: url("/assets/fonts/inconsolata-v37-latin-regular.woff2") format("woff2");
+  src: url("../assets/fonts/inconsolata-v37-latin-regular.woff2") format("woff2");
 }
 
 @font-face {
@@ -33,7 +33,7 @@
   font-style: normal;
   font-weight: 700;
   font-display: swap;
-  src: url("/assets/fonts/inconsolata-v37-latin-700.woff2") format("woff2");
+  src: url("../assets/fonts/inconsolata-v37-latin-700.woff2") format("woff2");
 }
 
 /* --- Color & Font Variables (Dark Mode Default) --- */
@@ -141,6 +141,14 @@ body {
 .text-accent {
   color: var(--color-brand-accent);
 }
+.text-link {
+  color: var(--color-action-primary);
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
+.text-link:hover {
+  color: var(--color-action-primary-hover);
+}
 
 pre,
 code,
@@ -171,7 +179,10 @@ nav {
 footer {
   border-top: 1px solid var(--color-border);
   display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 1.5rem;
   justify-content: space-between;
+  align-items: center;
   color: var(--color-text-secondary);
   font-size: 0.9rem;
 }
@@ -315,6 +326,9 @@ footer a:hover {
 }
 .value-item {
   background-color: var(--color-background-secondary);
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
   padding: 1rem;
   border-radius: 8px;
   border: 1px solid var(--color-border);
@@ -327,12 +341,10 @@ footer a:hover {
 }
 .legal-card {
   background-color: var(--color-background-secondary);
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
   padding: 1rem;
   border-radius: 8px;
   border: 1px solid var(--color-border);
-}
-.legal-text {
-  font-family: var(--font-mono);
-  white-space: pre-wrap;
-  color: var(--color-text-secondary);
 }

@@ -4,6 +4,9 @@ node_modules/
 # Vite build output
 dist/
 
+# Astro generated files
+.astro/
+
 # Sass cache
 .sass-cache/
 **/.sass-cache/

@@ -1,0 +1,117 @@
+---
+import {siteConfig, toAbsoluteUrl} from "@/config/site";
+import SiteFooter from "@/components/SiteFooter.astro";
+import SiteHeader from "@/components/SiteHeader.astro";
+import inconsolataBoldFontUrl from "@/assets/fonts/inconsolata-v37-latin-700.woff2";
+import inconsolataRegularFontUrl from "@/assets/fonts/inconsolata-v37-latin-regular.woff2";
+import interBoldFontUrl from "@/assets/fonts/inter-v20-latin-700.woff2";
+import interRegularFontUrl from "@/assets/fonts/inter-v20-latin-regular.woff2";
+import mainScriptUrl from "@/scripts/main.js?url";
+import "@/styles/main.css";
+
+interface Props {
+  title: string;
+  description: string;
+  canonicalPath: string;
+  ogType?: "website" | "article";
+  robots?: string;
+  includeMonoFonts?: boolean;
+  structuredData?: unknown;
+}
+
+const {
+  title,
+  description,
+  canonicalPath,
+  ogType = "website",
+  robots,
+  includeMonoFonts = false,
+  structuredData,
+} = Astro.props;
+
+const siteUrl = Astro.site ?? new URL(siteConfig.siteUrl);
+const canonicalUrl = new URL(canonicalPath, siteUrl).toString();
+const socialImageUrl = toAbsoluteUrl(siteConfig.socialImagePath, siteUrl);
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="dark light" />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    {robots && <meta name="robots" content={robots} />}
+    <link rel="canonical" href={canonicalUrl} />
+
+    <meta property="og:type" content={ogType} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:site_name" content={siteConfig.name} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={socialImageUrl} />
+    <meta property="og:image:alt" content={`${siteConfig.name} logo`} />
+
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={socialImageUrl} />
+    <meta name="twitter:image:alt" content={`${siteConfig.name} logo`} />
+
+    {structuredData && (
+      <script is:inline type="application/ld+json" set:html={JSON.stringify(structuredData)} />
+    )}
+
+    <link rel="icon" href="/favicon.ico" />
+    <link rel="icon" href="/assets/icons/favicon-16x16.png" type="image/png" sizes="16x16" />
+    <link rel="icon" href="/assets/icons/favicon-32x32.png" type="image/png" sizes="32x32" />
+    <link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.png" sizes="180x180" />
+    <link rel="manifest" href="/site.webmanifest" />
+
+    <link rel="preload" as="font" type="font/woff2" href={interRegularFontUrl} crossorigin />
+    <link rel="preload" as="font" type="font/woff2" href={interBoldFontUrl} crossorigin />
+    {includeMonoFonts && (
+      <>
+        <link
+          rel="preload"
+          as="font"
+          type="font/woff2"
+          href={inconsolataRegularFontUrl}
+          crossorigin
+        />
+        <link
+          rel="preload"
+          as="font"
+          type="font/woff2"
+          href={inconsolataBoldFontUrl}
+          crossorigin
+        />
+      </>
+    )}
+
+    <meta name="theme-color" id="theme-color-meta" content="#1c2833" />
+
+    <script is:inline>
+      try {
+        const theme = localStorage.getItem("theme");
+        if (theme === "dark" || theme === "light") {
+          document.documentElement.setAttribute("data-theme", theme);
+        }
+      } catch {
+        // Ignore storage access failures and fall back to CSS defaults.
+      }
+    </script>
+  </head>
+
+  <body>
+    <SiteHeader />
+    <main>
+      <slot />
+    </main>
+    <SiteFooter />
+    <script is:inline type="module" src={mainScriptUrl}></script>
+  </body>
+</html>
