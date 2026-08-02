@@ -61,9 +61,11 @@ const socialImageUrl = toAbsoluteUrl(siteConfig.socialImagePath, siteUrl);
     <meta name="twitter:image" content={socialImageUrl} />
     <meta name="twitter:image:alt" content={`${siteConfig.name} logo`} />
 
-    {structuredData && (
-      <script is:inline type="application/ld+json" set:html={JSON.stringify(structuredData)} />
-    )}
+    {
+      structuredData && (
+        <script is:inline type="application/ld+json" set:html={JSON.stringify(structuredData)} />
+      )
+    }
 
     <link rel="icon" href="/favicon.ico" />
     <link rel="icon" href="/assets/icons/favicon-16x16.png" type="image/png" sizes="16x16" />
@@ -73,24 +75,26 @@ const socialImageUrl = toAbsoluteUrl(siteConfig.socialImagePath, siteUrl);
 
     <link rel="preload" as="font" type="font/woff2" href={interRegularFontUrl} crossorigin />
     <link rel="preload" as="font" type="font/woff2" href={interBoldFontUrl} crossorigin />
-    {includeMonoFonts && (
-      <>
-        <link
-          rel="preload"
-          as="font"
-          type="font/woff2"
-          href={inconsolataRegularFontUrl}
-          crossorigin
-        />
-        <link
-          rel="preload"
-          as="font"
-          type="font/woff2"
-          href={inconsolataBoldFontUrl}
-          crossorigin
-        />
-      </>
-    )}
+    {
+      includeMonoFonts && (
+        <>
+          <link
+            rel="preload"
+            as="font"
+            type="font/woff2"
+            href={inconsolataRegularFontUrl}
+            crossorigin
+          />
+          <link
+            rel="preload"
+            as="font"
+            type="font/woff2"
+            href={inconsolataBoldFontUrl}
+            crossorigin
+          />
+        </>
+      )
+    }
 
     <meta name="theme-color" id="theme-color-meta" content="#1c2833" />
 

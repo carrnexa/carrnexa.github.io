@@ -8,15 +8,12 @@
   ],
   "chat.tools.terminal.autoApprove": {
     "npm run build": true,
-    "npm run check": true
+    "npm run check": true,
+    "npm run format": true
   },
 
   /* Formatting */
-  "files.insertFinalNewline": true,
   "editor.formatOnSave": true,
-  "editor.detectIndentation": false,
-  "editor.tabSize": 4,
-  "editor.insertSpaces": true,
 
   /* Markdown */
   "markdown.validate.enabled": true,
@@ -28,11 +25,6 @@
       "table_allowed_elements": ["br"]
     }
   },
-
-  /* Prettier */
-  "prettier.printWidth": 100,
-  "prettier.tabWidth": 4,
-  "prettier.bracketSpacing": false,
 
   /* XML */
   "xml.format.emptyElements": "collapse",
@@ -61,8 +53,6 @@
     "*.code-snippets": "jsonc"
   },
   "[markdown]": {
-    "editor.tabSize": 4,
-    "prettier.tabWidth": 4,
     "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.unicodeHighlight.ambiguousCharacters": true,
     "editor.unicodeHighlight.invisibleCharacters": true,
@@ -76,37 +66,34 @@
   },
   "[html]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode",
-    "prettier.tabWidth": 2,
     "editor.tabSize": 2
   },
   "[css]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode",
-    "prettier.tabWidth": 2,
     "editor.tabSize": 2
   },
   "[javascript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode",
-    "prettier.tabWidth": 2,
+    "editor.tabSize": 2
+  },
+  "[astro]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.tabSize": 2
   },
   "[yaml]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode",
-    "prettier.tabWidth": 2,
-    "editor.tabSize": 2
-  },
-  "[xml]": {
-    "editor.defaultFormatter": "redhat.vscode-xml",
-    "prettier.tabWidth": 2,
     "editor.tabSize": 2
   },
   "[json]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode",
-    "prettier.tabWidth": 2,
     "editor.tabSize": 2
   },
   "[jsonc]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode",
-    "prettier.tabWidth": 2,
+    "editor.tabSize": 2
+  },
+  "[xml]": {
+    "editor.defaultFormatter": "redhat.vscode-xml",
     "editor.tabSize": 2
   }
 }

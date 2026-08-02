@@ -59,6 +59,8 @@ npm run dev
 npm run build
 npm run preview
 npm run check
+npm run format
+npm run format:check
 ```
 
 ## Directory Structure
