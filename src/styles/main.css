@@ -348,6 +348,36 @@ footer a:hover {
   border-radius: 8px;
   border: 1px solid var(--color-border);
 }
+.legal-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.legal-section {
+  scroll-margin-top: 1rem;
+}
+.legal-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1rem;
+}
+.legal-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1rem;
+}
+.legal-disclosure {
+  border-top: 1px solid var(--color-border);
+  padding-top: 0.75rem;
+}
+.legal-disclosure summary {
+  cursor: pointer;
+  color: var(--color-text-primary);
+  font-weight: 700;
+}
+.legal-disclosure[open] .legal-text {
+  margin-top: 0.75rem;
+}
 .legal-text {
   font-family: var(--font-mono);
   white-space: pre-wrap;

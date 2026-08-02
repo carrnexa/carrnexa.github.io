@@ -1,56 +1,86 @@
 ---
+import {carrNexaSoftwareLicenseEntry, siteLicenseEntries} from "@/config/licenses";
 import {siteConfig} from "@/config/site";
 import BaseLayout from "@/layouts/BaseLayout.astro";
 
-const licenseSections = [
+const siteLicenseSections = [
   {
-    title: "Source code",
-    summary:
-      "Unless a file says otherwise, the code in this repository is released under the MIT License. You can use, modify, and redistribute it, including for commercial work, as long as the license notice stays with the code.",
+    ...siteLicenseEntries[0],
     href: siteConfig.sourceCodeLicenseUrl,
-    linkLabel: "Read LICENSE-CODE",
+    linkLabel: "Open LICENSE-CODE",
   },
   {
-    title: "Content and brand assets",
-    summary:
-      "Site content, writing, and brand assets are released under CC BY-NC 4.0 unless a file says otherwise. Attribution is required, and commercial reuse needs separate permission.",
+    ...siteLicenseEntries[1],
     href: siteConfig.contentLicenseUrl,
-    linkLabel: "Read LICENSE-CONTENT",
+    linkLabel: "Open LICENSE-CONTENT",
   },
+] as const;
+
+const otherCarrNexaLicenses = [
   {
-    title: "Other CarrNexa software",
-    summary:
-      "Some other CarrNexa software uses a different source-available license. If a project points at the CarrNexa proprietary license page, follow that license instead of assuming this repo's terms apply.",
+    ...carrNexaSoftwareLicenseEntry,
     href: siteConfig.softwareLicensePath,
-    linkLabel: "View CarrNexa software license",
+    linkLabel: "Open dedicated license page",
   },
 ] as const;
 ---
 
 <BaseLayout
-  title="Site Licenses | CarrNexa"
-  description="License terms for the CarrNexa website code, content, and brand assets."
+  title="Licenses | CarrNexa"
+  description="License terms for the CarrNexa website repo and a reference license used by other CarrNexa software." 
   canonicalPath="/legal/site-licenses.html"
   ogType="article"
 >
   <section class="hero container">
-    <h1 class="hero-title text-primary">Site licenses</h1>
-    <p class="hero-subtitle">This website repo does not use one license for everything.</p>
+    <h1 class="hero-title text-primary">Licenses</h1>
+    <p class="hero-subtitle">One place to see what applies.</p>
     <p>
-      The code and the content are licensed separately. Check the repository files before you
-      reuse anything, especially if you are copying content or design assets instead of code.
+      This page is the legal map. The website repo uses separate licenses for code and content,
+      and some other CarrNexa software uses a different source-available license.
     </p>
   </section>
 
   <section class="legal container">
-    <h2 class="section-title text-primary">What applies to this site</h2>
+    <div class="legal-card legal-nav-card">
+      <h2 class="text-primary">Contents</h2>
+      <div class="legal-nav">
+        <a class="text-link" href="#site-code">Site source code</a>
+        <a class="text-link" href="#site-content">Site content and brand assets</a>
+        <a class="text-link" href="#carrnexa-software">Other CarrNexa software</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="legal container legal-stack">
+    <h2 class="section-title text-primary">This site</h2>
+    {
+      siteLicenseSections.map((section) => (
+        <article id={section.id} class="legal-card legal-section">
+          <h3 class="text-primary">{section.title}</h3>
+          <p>{section.summary}</p>
+          <div class="legal-actions">
+            <a class="text-link" href={section.href} target="_blank" rel="noopener noreferrer">
+              {section.linkLabel}
+            </a>
+          </div>
+          <details class="legal-disclosure">
+            <summary>View full text</summary>
+            <pre class="legal-text">{section.text}</pre>
+          </details>
+        </article>
+      ))
+    }
+  </section>
+
+  <section class="legal container legal-stack">
+    <h2 class="section-title text-primary">Other CarrNexa software</h2>
     <div class="values-grid">
       {
-        licenseSections.map((section) => (
-          <article class="value-item">
+        otherCarrNexaLicenses.map((section) => (
+          <article id={section.id} class="value-item legal-section">
             <h3 class="text-primary">{section.title}</h3>
             <p>{section.summary}</p>
-            <p>
+            <div class="legal-actions">
               <a
                 class="text-link"
                 href={section.href}
@@ -59,7 +89,11 @@ const licenseSections = [
               >
                 {section.linkLabel}
               </a>
-            </p>
+            </div>
+            <details class="legal-disclosure">
+              <summary>View full text</summary>
+              <pre class="legal-text">{section.text}</pre>
+            </details>
           </article>
         ))
       }

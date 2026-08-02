@@ -85,4 +85,7 @@ This repo uses a split license model.
 - Source code is licensed under the [MIT License](./LICENSE-CODE).
 - Site content and brand assets are licensed under [CC BY-NC 4.0](./LICENSE-CONTENT), unless a file says otherwise.
 
-The CarrNexa proprietary source-available license published on the website is a separate reference text used by other CarrNexa software. It does not replace this repository's own LICENSE files.
+The website also publishes a separate CarrNexa proprietary source-available license used by other CarrNexa software. It does not replace this repository's own LICENSE files.
+
+- [Site licenses](./src/pages/legal/site-licenses.astro): overview page for this repo's code/content licenses plus related CarrNexa license references.
+- [CarrNexa proprietary license reference](./src/pages/legal/license.astro): stable page for software that points at the CarrNexa source-available license.
