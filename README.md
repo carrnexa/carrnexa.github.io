@@ -18,12 +18,12 @@ Astro is used as a build-time composition layer. It gives the site reusable layo
 ### Asset model
 
 1. **Source (`src/`)**
-   - Astro pages, layouts, components, styles, and scripts.
-   - Imported assets are fingerprinted at build time for cache busting.
+    - Astro pages, layouts, components, styles, and scripts.
+    - Imported assets are fingerprinted at build time for cache busting.
 
 2. **Public (`public/`)**
-   - Stable URL assets such as icons, manifests, and crawler-facing files.
-   - Files are copied as-is to the build output.
+    - Stable URL assets such as icons, manifests, and crawler-facing files.
+    - Files are copied as-is to the build output.
 
 ### Theme behavior
 
