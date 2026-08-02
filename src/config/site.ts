@@ -6,7 +6,8 @@ export const siteConfig = {
   repositoryUrl: "https://github.com/carrnexa/www-ui",
   socialImagePath: "/assets/icons/android-chrome-512x512.png",
   email: "hello@carrnexa.com",
-  licensePath: "/legal/license.html",
+  softwareLicensePath: "/legal/license.html",
+  siteLicensesPath: "/legal/site-licenses.html",
   sourceCodeLicenseUrl: "https://github.com/carrnexa/www-ui/blob/main/LICENSE-CODE",
   contentLicenseUrl: "https://github.com/carrnexa/www-ui/blob/main/LICENSE-CONTENT",
 } as const;

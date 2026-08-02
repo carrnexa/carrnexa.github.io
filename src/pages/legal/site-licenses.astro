@@ -1,0 +1,68 @@
+---
+import {siteConfig} from "@/config/site";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+
+const licenseSections = [
+  {
+    title: "Source code",
+    summary:
+      "Unless a file says otherwise, the code in this repository is released under the MIT License. You can use, modify, and redistribute it, including for commercial work, as long as the license notice stays with the code.",
+    href: siteConfig.sourceCodeLicenseUrl,
+    linkLabel: "Read LICENSE-CODE",
+  },
+  {
+    title: "Content and brand assets",
+    summary:
+      "Site content, writing, and brand assets are released under CC BY-NC 4.0 unless a file says otherwise. Attribution is required, and commercial reuse needs separate permission.",
+    href: siteConfig.contentLicenseUrl,
+    linkLabel: "Read LICENSE-CONTENT",
+  },
+  {
+    title: "Other CarrNexa software",
+    summary:
+      "Some other CarrNexa software uses a different source-available license. If a project points at the CarrNexa proprietary license page, follow that license instead of assuming this repo's terms apply.",
+    href: siteConfig.softwareLicensePath,
+    linkLabel: "View CarrNexa software license",
+  },
+] as const;
+---
+
+<BaseLayout
+  title="Site Licenses | CarrNexa"
+  description="License terms for the CarrNexa website code, content, and brand assets."
+  canonicalPath="/legal/site-licenses.html"
+  ogType="article"
+>
+  <section class="hero container">
+    <h1 class="hero-title text-primary">Site licenses</h1>
+    <p class="hero-subtitle">This website repo does not use one license for everything.</p>
+    <p>
+      The code and the content are licensed separately. Check the repository files before you
+      reuse anything, especially if you are copying content or design assets instead of code.
+    </p>
+  </section>
+
+  <section class="legal container">
+    <h2 class="section-title text-primary">What applies to this site</h2>
+    <div class="values-grid">
+      {
+        licenseSections.map((section) => (
+          <article class="value-item">
+            <h3 class="text-primary">{section.title}</h3>
+            <p>{section.summary}</p>
+            <p>
+              <a
+                class="text-link"
+                href={section.href}
+                target={section.href.startsWith("http") ? "_blank" : undefined}
+                rel={section.href.startsWith("http") ? "noopener noreferrer" : undefined}
+              >
+                {section.linkLabel}
+              </a>
+            </p>
+          </article>
+        ))
+      }
+    </div>
+  </section>
+</BaseLayout>

@@ -2,69 +2,91 @@
 import {siteConfig} from "@/config/site";
 import BaseLayout from "@/layouts/BaseLayout.astro";
 
-const licenseSections = [
-  {
-    title: "Source code",
-    summary:
-      "Unless a file says otherwise, the code in this repository is released under the MIT License. You can use, modify, and redistribute it, including for commercial work, as long as the license notice stays with the code.",
-    href: siteConfig.sourceCodeLicenseUrl,
-    linkLabel: "Read LICENSE-CODE",
-  },
-  {
-    title: "Content and brand assets",
-    summary:
-      "Site content, writing, and brand assets are released under CC BY-NC 4.0 unless a file says otherwise. Attribution is required, and commercial reuse needs separate permission.",
-    href: siteConfig.contentLicenseUrl,
-    linkLabel: "Read LICENSE-CONTENT",
-  },
-] as const;
+const carrNexaLicenseText = String.raw`CARRNEXA PROPRIETARY LICENSE
+
+Copyright (c) 2026 Christopher Carr McMahon.
+All rights reserved.
+
+This Software and associated documentation files (the "Software") are the
+proprietary property of Christopher Carr McMahon (the "Licensor"). This is a
+proprietary, source-available license and is not an open-source license.
+
+1. GRANT OF LICENSE
+   The Licensor grants you a limited, non-exclusive, non-transferable,
+   revocable license to access, view, and read the Source Code of the Software
+   solely for the purposes of security auditing, educational analysis, and
+   verification of functionality.
+
+   Limited Execution for Auditing:
+   You may compile and execute the Software solely for the purpose of
+   security auditing or verification of functionality, provided that such
+   execution occurs only in a private, non-production, non-public, and
+   non-commercial environment. You may not deploy, host, or operate the
+   Software in any capacity that provides functionality to end users or
+   third parties.
+
+   Except as expressly permitted above, this license does not grant
+   permission to compile, execute, run, deploy, or otherwise use the Software
+   in any operational capacity.
+
+2. RESTRICTIONS
+   You may NOT:
+   (a) Use the Software for any commercial purpose.
+   (b) Distribute, publish, sublicense, rent, lease, lend, or make the
+       Software available to any third party.
+   (c) Modify, decompile, disassemble, or reverse engineer the Software,
+       except to the extent strictly necessary for the limited purposes
+       described in Section 1 (e.g., debugging).
+   (d) Use the Software to create a competitive product or service.
+   (e) Remove or alter any copyright, proprietary notices, or attribution.
+
+3. TERMINATION
+   Any breach of this License automatically terminates all rights granted
+   herein. Upon termination, you must immediately cease all use of the
+   Software and destroy any copies in your possession.
+
+4. NO WARRANTY
+   THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+   IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+   FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+   AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+   LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+   FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+   DEALINGS IN THE SOFTWARE.`;
 ---
 
 <BaseLayout
-  title="Licensing | CarrNexa"
-  description="License terms for the CarrNexa website code, content, and brand assets."
+  title="CarrNexa Proprietary License | CarrNexa"
+  description="Reference text for CarrNexa software that uses the CarrNexa proprietary source-available license."
   canonicalPath="/legal/license.html"
   ogType="article"
+  includeMonoFonts={true}
 >
   <section class="hero container">
-    <h1 class="hero-title text-primary">Licensing</h1>
-    <p class="hero-subtitle">The code and the content are not under the same license.</p>
+    <h1 class="hero-title text-primary">CarrNexa Proprietary License</h1>
+    <p class="hero-subtitle">Reference text for software that uses this license.</p>
     <p>
-      This site uses a split license model. If you plan to reuse something, check which bucket it
-      belongs to before you assume the terms are the same.
+      This page exists as a stable source of truth for CarrNexa software that ships under this
+      source-available license. Repository-specific LICENSE files still control the terms for any
+      individual repository.
     </p>
-  </section>
-
-  <section class="legal container">
-    <h2 class="section-title text-primary">What applies</h2>
-    <div class="values-grid">
-      {
-        licenseSections.map((section) => (
-          <article class="value-item">
-            <h3 class="text-primary">{section.title}</h3>
-            <p>{section.summary}</p>
-            <p>
-              <a
-                class="text-link"
-                href={section.href}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {section.linkLabel}
-              </a>
-            </p>
-          </article>
-        ))
-      }
-    </div>
   </section>
 
   <section class="legal container">
     <div class="legal-card">
       <p>
-        The repository is the source of truth for the exact license text. If a specific file ships
-        with a different notice, follow the notice in that file.
+        This page does not override repository-specific LICENSE files. The CarrNexa website repo
+        itself uses separate licenses for code and content.
       </p>
+      <p>
+        <a class="text-link" href={siteConfig.siteLicensesPath}>View this site's licenses</a>
+      </p>
+    </div>
+  </section>
+
+  <section class="legal container">
+    <div class="legal-card">
+      <pre class="legal-text">{carrNexaLicenseText}</pre>
     </div>
   </section>
 </BaseLayout>
