@@ -3,6 +3,7 @@
     "davidanson.vscode-markdownlint",
     "ms-vscode.powershell",
     "esbenp.prettier-vscode",
-    "redhat.vscode-xml"
+    "redhat.vscode-xml",
+    "astro-build.astro-vscode"
   ]
 }

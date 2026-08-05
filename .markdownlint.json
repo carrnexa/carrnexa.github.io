@@ -1,4 +1,4 @@
 {
-  "MD007": { "indent": 4 },
-  "MD033": { "table_allowed_elements": ["br"] }
+  "MD007": {"indent": 4},
+  "MD033": {"table_allowed_elements": ["br"]}
 }
