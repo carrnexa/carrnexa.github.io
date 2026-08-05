@@ -14,6 +14,7 @@
 
   /* Formatting */
   "editor.formatOnSave": true,
+  "editor.tabSize": 2,
 
   /* Markdown */
   "markdown.validate.enabled": true,
@@ -45,6 +46,7 @@
     "*.code-snippets": "jsonc"
   },
   "[markdown]": {
+    "editor.tabSize": 4,
     "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.unicodeHighlight.ambiguousCharacters": true,
     "editor.unicodeHighlight.invisibleCharacters": true,
@@ -56,36 +58,13 @@
       "other": "off"
     }
   },
-  "[html]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode",
-    "editor.tabSize": 2
-  },
-  "[css]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode",
-    "editor.tabSize": 2
-  },
-  "[javascript]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode",
-    "editor.tabSize": 2
-  },
-  "[astro]": {
-    "editor.defaultFormatter": "astro-build.astro-vscode",
-    "editor.tabSize": 2
-  },
-  "[yaml]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode",
-    "editor.tabSize": 2
-  },
-  "[json]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode",
-    "editor.tabSize": 2
-  },
-  "[jsonc]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode",
-    "editor.tabSize": 2
-  },
-  "[xml]": {
-    "editor.defaultFormatter": "redhat.vscode-xml",
-    "editor.tabSize": 2
-  }
+  "[html]": {"editor.defaultFormatter": "esbenp.prettier-vscode"},
+  "[css]": {"editor.defaultFormatter": "esbenp.prettier-vscode"},
+  "[javascript]": {"editor.defaultFormatter": "esbenp.prettier-vscode"},
+  "[typescript]": {"editor.defaultFormatter": "esbenp.prettier-vscode"},
+  "[json]": {"editor.defaultFormatter": "esbenp.prettier-vscode"},
+  "[jsonc]": {"editor.defaultFormatter": "esbenp.prettier-vscode"},
+  "[yaml]": {"editor.defaultFormatter": "esbenp.prettier-vscode"},
+  "[astro]": {"editor.defaultFormatter": "astro-build.astro-vscode"},
+  "[xml]": {"editor.defaultFormatter": "redhat.vscode-xml"}
 }
