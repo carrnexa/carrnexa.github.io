@@ -17,14 +17,6 @@
 
   /* Markdown */
   "markdown.validate.enabled": true,
-  "markdownlint.config": {
-    "MD007": {
-      "indent": 4
-    },
-    "MD033": {
-      "table_allowed_elements": ["br"]
-    }
-  },
 
   /* XML */
   "xml.format.emptyElements": "collapse",
