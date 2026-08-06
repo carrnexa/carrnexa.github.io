@@ -1,19 +1,28 @@
 /** @type {import("prettier").Config} */
 export default {
   printWidth: 100,
-  bracketSpacing: false,
   tabWidth: 2,
+  useTabs: false,
+  semi: true,
+  singleQuote: false,
+  quoteProps: "consistent",
+  jsxSingleQuote: false,
+  trailingComma: "all",
+  bracketSpacing: false,
+  objectWrap: "preserve",
+  bracketSameLine: false,
+  arrowParens: "always",
   overrides: [
-    {
-      files: "*.astro",
-      options: {
-        plugins: ["prettier-plugin-astro"],
-      },
-    },
     {
       files: "*.md",
       options: {
         tabWidth: 4,
+      },
+    },
+    {
+      files: "*.astro",
+      options: {
+        plugins: ["prettier-plugin-astro"],
       },
     },
   ],
