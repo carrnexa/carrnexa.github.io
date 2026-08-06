@@ -2,19 +2,12 @@
 export default {
   printWidth: 100,
   bracketSpacing: false,
+  tabWidth: 2,
   overrides: [
     {
       files: "*.astro",
       options: {
         plugins: ["prettier-plugin-astro"],
-        parser: "astro",
-        tabWidth: 2,
-      },
-    },
-    {
-      files: ["*.html", "*.css", "*.js", "*.json", "*.jsonc", "*.yaml", "*.yml"],
-      options: {
-        tabWidth: 2,
       },
     },
     {
